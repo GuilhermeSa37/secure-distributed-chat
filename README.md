@@ -258,6 +258,22 @@ GitHub Actions builds and tests the project on pushes and pull requests.
 
 This project originated as a team university project in distributed systems and was later reorganized for portfolio presentation.
 
+## My Contributions
+
+This project was developed by a three-person team. My main contributions included:
+
+* Designed the initial system architecture and project structure.
+* Implemented TLS-secured communication between clients and the server.
+* Designed and implemented the socket-based communication layer.
+* Developed the virtual-thread-based concurrency architecture.
+* Implemented user registration, authentication, session management, and reconnection support.
+* Designed thread-safe data storage for users, chat rooms, sessions, and connected clients.
+* Contributed to fault-tolerance mechanisms, including handling client disconnections, session recovery, and slow clients.
+* Participated in system integration, debugging, and end-to-end testing.
+
+The remaining work was divided between the other team members. One team member contributed to additional fault-tolerance mechanisms, while another implemented the AI-enabled chat rooms and user interface.
+
+
 **Before publishing, replace this paragraph with your individual contribution**, for example the components you designed, implemented, tested, or integrated. Avoid assigning a percentage; name the concrete engineering work instead.
 
 ## Current limitations
