@@ -273,9 +273,6 @@ This project was developed by a three-person team. My main contributions include
 
 The remaining work was divided between the other team members. One team member contributed to additional fault-tolerance mechanisms, while another implemented the AI-enabled chat rooms and user interface.
 
-
-**Before publishing, replace this paragraph with your individual contribution**, for example the components you designed, implemented, tested, or integrated. Avoid assigning a percentage; name the concrete engineering work instead.
-
 ## Current limitations
 
 - The architecture uses one central server rather than replicated server nodes.
