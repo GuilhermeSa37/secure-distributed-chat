@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+**/build/
+bin/
+
+# IntelliJ and VS Code
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment and runtime data
+.env
+certs/
+data/users.txt
+*.log
+
+# Large local demo media
+*.mp4

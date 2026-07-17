@@ -1,0 +1,86 @@
+plugins {
+    id 'application'
+}
+
+group = 'securechat'
+version = '1.0.0'
+
+def javaVersion = JavaVersion.current()
+if (!javaVersion.isCompatibleWith(JavaVersion.VERSION_21)) {
+    throw new GradleException("Java 21 or newer is required. Current Gradle JVM is ${System.getProperty('java.version')}.")
+}
+
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+application {
+    // Default main class if you just run: gradle run
+    mainClass = 'chat.server.ServerMain'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('runServer', JavaExec) {
+    group = 'application'
+    description = 'Runs the chat server. Usage: gradle runServer -Pport=12345'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'chat.server.ServerMain'
+    args = [project.findProperty('port') ?: '12345']
+    standardInput = System.in
+}
+
+tasks.register('runClient', JavaExec) {
+    group = 'application'
+    description = 'Runs the chat client. Usage: gradle runClient -Phost=localhost -Pport=12345'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'chat.client.ClientMain'
+    args = [
+        project.findProperty('host') ?: 'localhost',
+        project.findProperty('port') ?: '12345'
+    ]
+    standardInput = System.in
+}
+
+tasks.register('printRunHelp') {
+    group = 'help'
+    description = 'Prints commands for running the server and clients.'
+    doLast {
+        println ''
+        println 'Compile:'
+        println '  gradle build'
+        println ''
+        println 'Run server:'
+        println '  gradle runServer -Pport=12345'
+        println ''
+        println 'Run client:'
+        println '  gradle runClient -Phost=localhost -Pport=12345'
+        println ''
+        println 'Open multiple terminals and run one server plus several clients.'
+        println ''
+    }
+}
+
+tasks.register('runScenario', JavaExec) {
+    group = 'verification'
+    description = 'Runs scripted scenario checks. Usage: gradle runScenario -Pscenario=reconnect -Phost=localhost -Pport=12345'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'chat.tests.ScenarioChecks'
+    args = [
+        project.findProperty('scenario') ?: 'reconnect',
+        project.findProperty('host') ?: 'localhost',
+        project.findProperty('port') ?: '12345'
+    ]
+}
