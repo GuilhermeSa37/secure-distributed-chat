@@ -280,7 +280,3 @@ The remaining work was divided between the other team members. One team member c
 - Room history is not replayed with sequence numbers after reconnect.
 - TLS certificates are generated for local development only.
 - AI availability depends on an external Ollama process.
-
-## Publishing note
-
-No licence has been added because this began as a team project. Confirm publication rights with the other contributors and the university before selecting a licence or making the repository public.
